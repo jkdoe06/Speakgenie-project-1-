@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Latest Workflows</h2>
+
+<table border="1">
+    <tr>
+        <th>Workflow</th>
+        <th>Views</th>
+        <th>Likes</th>
+        <th>Comments</th>
+        <th>Score</th>
+    </tr>
+    {% for w in rows %}
+    <tr>
+        <td>{{ w.workflow }}</td>
+        <td>{{ w.views }}</td>
+        <td>{{ w.likes }}</td>
+        <td>{{ w.comments }}</td>
+        <td>{{ compute_score(w) }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

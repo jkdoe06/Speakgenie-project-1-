@@ -1,0 +1,97 @@
+/* Design of the front end of the UI this designs the side bar layout and other things /*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Workflow Popularity Dashboard</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        /* Sidebar Layout */
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 220px;
+            background: #111827;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        .sidebar select {
+            margin-top: 15px;
+            padding: 6px;
+            width: 100%;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        hr {
+            display: none;
+        }
+
+        strong {
+            color: #e5e7eb;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar contents so the workflow and leaderboard depdning on company -->
+    <div class="sidebar">
+        <strong>Navigation</strong>
+        <a href="/?country={{ country }}">Home</a>
+        <a href="/workflows?country={{ country }}">Latest Workflows</a>
+        <a href="/workflows/leaderboard?country={{ country }}">Leaderboard</a>
+        <a href="/workflows/history?country={{ country }}">History</a>
+
+        <strong style="margin-top: 20px;">Country</strong>
+
+        <!-- Country Selector for US and IN -->
+        <form id="countryForm" method="GET">
+            <select name="country" id="countrySelect">
+                <option value="US" {% if country == 'US' %}selected{% endif %}>United States</option>
+                <option value="IN" {% if country == 'IN' %}selected{% endif %}>India</option>
+            </select>
+        </form>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- When switching country ran into an issue of when selecting 
+     it wouldnt preserver the selection so this fixes that -->
+    <script>
+        const select = document.getElementById('countrySelect');
+        select.addEventListener('change', () => {
+            const url = new URL(window.location.href);
+            url.searchParams.set('country', select.value);
+            window.location.href = url.toString();
+        });
+    </script>
+
+</body>
+</html>

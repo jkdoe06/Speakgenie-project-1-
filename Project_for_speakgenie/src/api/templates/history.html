@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Workflow History</h2>
+
+{% for h in history %}
+    <h3>{{ h.workflow }}</h3>
+    <ul>
+        {% for point in h.history %}
+        <li>{{ point.snapshot_date }} — Views: {{ point.views }}, Likes: {{ point.likes }}, Comments: {{ point.comments }}</li>
+        {% endfor %}
+    </ul>
+{% endfor %}
+{% endblock %}
