@@ -1,63 +1,120 @@
+/* Reset + basic font setup */
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background: #fafafa;
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: #f3f4f6;
+    color: #111827;
 }
 
-a {
-    color: #4a4aef;
+/* Whole screen flexbox layout: sidebar on left, content on right */
+.layout {
+    display: flex;
+    min-height: 100vh; /* full screen height */
+}
+
+/* Sidebar styling: dark theme */
+.sidebar {
+    width: 260px;
+    background-color: #020617;
+    color: #f9fafb;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 20px;
+    box-sizing: border-box;
+}
+
+/* Small title text above navigation links */
+.sidebar-title {
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+/* Spacing between sidebar groups */
+.sidebar-section {
+    margin-top: 24px;
+}
+
+/* Sidebar links stacked vertically */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Sidebar link appearance */
+.sidebar-nav a {
+    color: #e5e7eb;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 15px;
 }
 
-a:hover {
-    text-decoration: underline;
+/* Hover effect so it feels interactive */
+.sidebar-nav a:hover {
+    color: #ffffff;
 }
 
-hr {
-    margin: 20px 0;
+/* Label above dropdown */
+.sidebar-label {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
 }
 
-table {
+/* Country dropdown style */
+.sidebar select {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-th, td {
-    border: 1px solid #ccc;
-    padding: 8px;
+    padding: 6px 8px;
+    border-radius: 4px;
+    border: 1px solid #4b5563;
+    background-color: #020617;
+    color: #e5e7eb;
     font-size: 14px;
 }
 
+.sidebar select:focus {
+    outline: none;
+    border-color: #60a5fa;
+}
+
+/* Right side content area */
+.content {
+    flex: 1;
+    padding: 40px 48px;
+    box-sizing: border-box;
+    background-color: #f9fafb;
+}
+
+/* Text styling (headings look cleaner) */
+h1, h2, h3 {
+    margin-top: 0;
+    color: #111827;
+}
+
+/* Table styling — clean white cards */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+/* Table cell spacing + borders */
+th, td {
+    border: 1px solid #e5e7eb;
+    padding: 8px 10px;
+    font-size: 14px;
+}
+
+/* Table header background */
 th {
-    background: #e7e7ff;
+    background-color: #f3f4f6;
     text-align: left;
 }
 
+/* Stripe rows so it's easier to read */
 tr:nth-child(even) {
-    background: #f1f1f1;
-}
-
-h1 {
-    margin-top: 10px;
-    font-size: 26px;
-}
-nav {
-    font-size: 18px;
-    margin-bottom: 15px;
-}
-
-nav a {
-    padding: 0 8px;
-}
-
-h1 {
-    font-size: 32px;
-    color: #222;
-}
-
-body {
-    max-width: 1000px;
-    margin: 0 auto;
+    background-color: #f9fafb;
 }
